@@ -7,5 +7,5 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 
 })
-public class Task1Test {
+public class Task1Suite {
 }

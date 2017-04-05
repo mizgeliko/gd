@@ -8,6 +8,6 @@ import org.junit.runners.Suite;
         SomeEntityFactoryTest.class,
         MaxValuesGroupedByNamesTest.class
 })
-public class Task3Test {
+public class Task3Suite {
 }
 
