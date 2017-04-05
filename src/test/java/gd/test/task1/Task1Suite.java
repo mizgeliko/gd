@@ -5,7 +5,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-
+        CategoryContainerTest.class,
+        MainTest.class
 })
 public class Task1Suite {
 }

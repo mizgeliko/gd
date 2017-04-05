@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Main {
 
-    private static String input =
+    public static final String INPUT =
             "[{productId: '1234', type: 'Shirt', category: '3', price: 40},\n" +
             "{productId: '2341', type: 'Pants', category: '3a', price: 15},\n" +
             "{productId: '123', type: 'Shoe', category: '1', price: 20},\n" +
@@ -21,12 +21,9 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-        mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+        ObjectMapper mapper = getObjectMapper();
 
-        List<Product> productList = new JsonProductListParser(mapper).parse(input);
+        List<Product> productList = new JsonProductListParser(mapper).parse(INPUT);
 
         OutputTransformer outputTransformer = new JsonOutputTransformer(mapper);
 
@@ -36,7 +33,15 @@ public class Main {
 
     }
 
-    private static List<List<Product>> pairGroupsAndSort(List<Product> products) {
+    static ObjectMapper getObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+        return mapper;
+    }
+
+    static List<List<Product>> pairGroupsAndSort(List<Product> products) {
         Map<String, CategoryContainer> map = new HashMap<>();
         for (Product p : products) {
             String key = p.getCategory().replaceAll("\\D", "");
