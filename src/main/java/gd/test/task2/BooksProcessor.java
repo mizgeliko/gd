@@ -42,9 +42,9 @@ public class BooksProcessor {
 
     Supplier<Map<String, Long>> fileProcessingSupplier(Path filePath) {
         return () -> {
-            Map<String, Long> map = null;
+            Map<String, Long> map;
             try (Stream<String> stream = Files.newBufferedReader(filePath).lines()) {
-                return stream.map(TEXT_PROCESSING_FUNC).reduce(new HashMap<>(), MERGE_MAP_ACCUMULATOR);
+                map = stream.map(TEXT_PROCESSING_FUNC).reduce(new HashMap<>(), MERGE_MAP_ACCUMULATOR);
             } catch (IOException e) {
                 map = Collections.emptyMap();
                 e.printStackTrace(); //todo log

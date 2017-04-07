@@ -25,11 +25,10 @@ public class Main {
 
         List<Product> productList = new JsonProductListParser(mapper).parse(INPUT);
 
-        OutputTransformer outputTransformer = new JsonOutputTransformer(mapper);
-
         List<?> result = pairGroupsAndSort(productList);
 
-        System.out.println(outputTransformer.transform(result));
+        OutputTransformer outputTransformer = new JsonOutputTransformer(mapper);
+        outputTransformer.write(result, System.out);
 
     }
 

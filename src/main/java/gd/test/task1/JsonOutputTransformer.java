@@ -3,8 +3,7 @@ package gd.test.task1;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.Collection;
+import java.io.OutputStream;
 
 class JsonOutputTransformer implements OutputTransformer {
 
@@ -15,10 +14,8 @@ class JsonOutputTransformer implements OutputTransformer {
     }
 
     @Override
-    public <T> String transform(T data) throws IOException {
-        StringWriter stringWriter = new StringWriter();
-        mapper.writeValue(stringWriter, data);
-        return stringWriter.toString();
+    public <T> void write(T data, OutputStream stream) throws IOException {
+        mapper.writeValue(stream, data);
     }
 
 }
