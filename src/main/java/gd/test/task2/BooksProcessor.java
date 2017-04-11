@@ -22,7 +22,6 @@ public class BooksProcessor {
     static final Function<String, Map<String, Long>> TEXT_PROCESSING_FUNC = text ->
             Stream.of(Optional.ofNullable(text).orElse("").toLowerCase().replaceAll(REGEX, " ").split(" "))
                     .filter(StringUtils::isNotBlank)
-                    // .map(String::toLowerCase)
                     .collect(Collectors.toMap(t -> t, t -> 1L, (l1, l2) -> l1 + l2, HashMap::new));
 
     static final BinaryOperator<Map<String, Long>> MERGE_MAP_ACCUMULATOR = (n, m) -> {
